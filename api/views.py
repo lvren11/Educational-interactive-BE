@@ -36,12 +36,15 @@ class LoginView(APIView):
 class BehaviorView(APIView):
     def post(self,request,*args,**kwargs):
         behavior_value = request.data.get('logvalue')
-        info_list = request.data.get('snumber').split(',')
-        snumber, question = info_list[0], info_list[1]
-        file_name = f'{snumber}.log'
+        info_list = request.data.get('file').split(',')
+        snumber, file, uid, question = info_list[0], info_list[1], info_list[2], info_list[3]
+        file_name = f'{file}.log'
         if not os.path.exists(settings.LOG_UPLOAD):
             os.mkdir(settings.LOG_UPLOAD)
-        with open(os.path.join(settings.LOG_UPLOAD, file_name), 'a+') as f:
+        deep_name = os.path.join(settings.LOG_UPLOAD, file_name)
+        if os.path.exists(deep_name) and question == "汽车刹车":
+            os.remove(deep_name)
+        with open(deep_name, 'a+') as f:
             f.writelines("标题：" + question + "\n")
             for timestrap, content in behavior_value.items():
                 f.writelines(timestrap + "\t" + content.replace("\n","") + "\n")
@@ -50,4 +53,3 @@ class BehaviorView(APIView):
         if not user_log:
             models.UserLog.objects.create(snumber=snumber,logname=os.path.join(settings.LOG_UPLOAD, file_name))
         return Response({'code': 1000, 'message':'success'})
-
