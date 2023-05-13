@@ -19,3 +19,8 @@ class UserLog(models.Model):
     id = models.AutoField(primary_key=True)
     snumber = models.CharField(u'snumber', max_length=100)
     logname = models.CharField(max_length=1000)
+
+class Userstatus(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
+    status = models.IntegerField()
