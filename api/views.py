@@ -55,7 +55,7 @@ class BehaviorView(APIView):
         if os.path.exists(deep_name) and question == "煮食器皿" and page == "3":
             with open(deep_name, 'r+') as file:
                 file.truncate(0)
-        with open(deep_name, 'a+') as f:
+        with open(deep_name, 'a+', encoding='utf-8') as f:
             if page == "3":
                 f.writelines("标题：" + question + "\n")
             for i in behavior_value:
@@ -68,7 +68,7 @@ class BehaviorView(APIView):
         Answer_UPLOAD = os.path.join(settings.BASE_DIR, 'static/Answer')
         if not os.path.exists(Answer_UPLOAD):
             os.mkdir(Answer_UPLOAD)
-        file_name = f'{file_path}.xlsx'
+        file_name = f'{file_path}.xls'
         excel_name = os.path.join(Answer_UPLOAD, file_name)
         header_list = ['姓名','年级','性别','题号','回答类型','答案']
         if os.path.exists(excel_name):
@@ -142,8 +142,8 @@ class BehaviorView(APIView):
             "汽车刹车":{
                 "3":"3-1aF",
                 "4":"4-1nC",
-                "5":"5-1nF",
-                "6":"6-2anF"
+                "5":"5-2anF",
+                "6":"6-1nF"
             },
             "物质鉴别":{
                 "3":"7-1nC",
