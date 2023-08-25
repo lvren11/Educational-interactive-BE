@@ -21,7 +21,7 @@ LOG_UPLOAD = os.path.join(BASE_DIR, 'static/log')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'epv029)83nj!ktighua_52y9%x1hbzs(tyc-ftq+!3h0mcd0!o'
+SECRET_KEY = 'XXXX'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # 数据库引擎
         'NAME': 'sps', # 数据库名
-        'USER': 'root', # 账号
-        'PASSWORD': '2020jyh2020', # 密码
+        'USER': 'XXXX', # 账号
+        'PASSWORD': 'XXXX', # 密码
         'HOST': '127.0.0.1', # HOST
         'POST': 3306, # 端口
 
